@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Apartamentos de demostración en Málaga y panel sencillo de reservas.">
+  <title>StayPilot · Apartamentos en Málaga</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header">
+    <a class="brand" href="#inicio" data-route="home" aria-label="StayPilot, inicio">
+      <span class="brand-mark">SP</span><span>StayPilot</span>
+    </a>
+    <nav aria-label="Navegación principal">
+      <button class="nav-link is-active" data-view="public">Alojamientos</button>
+      <button class="nav-link" data-view="admin">Administración</button>
+    </nav>
+    <span class="demo-label">Datos de demostración</span>
+  </header>
+
+  <main id="contenido">
+    <section id="public-view" class="view is-active" aria-labelledby="public-title">
+      <section class="hero" id="inicio">
+        <div class="hero-photo" role="img" aria-label="Salón luminoso de Casa Álamos"></div>
+        <div class="hero-copy">
+          <p class="eyebrow">Estancias cortas · Málaga</p>
+          <h1 id="public-title">Tres casas, cada una para una forma distinta de quedarse.</h1>
+          <p class="hero-intro">Apartamentos de demostración con precios claros y reserva directa. Elige las fechas para ver solo lo que está libre.</p>
+          <form id="search-form" class="search-panel" novalidate>
+            <label>Entrada<input id="check-in" name="checkIn" type="date" required></label>
+            <label>Salida<input id="check-out" name="checkOut" type="date" required></label>
+            <label>Huéspedes<select id="guest-count" name="guests"><option value="1">1 huésped</option><option value="2" selected>2 huéspedes</option><option value="3">3 huéspedes</option><option value="4">4 huéspedes</option><option value="5">5 huéspedes</option></select></label>
+            <button class="button button-primary" type="submit">Comprobar disponibilidad</button>
+          </form>
+          <p id="search-error" class="field-message" role="alert" hidden></p>
+        </div>
+      </section>
+
+      <section class="apartments-section" aria-labelledby="apartments-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">Alojamientos</p><h2 id="apartments-title">Elige el espacio que encaja</h2></div>
+          <p id="result-count">3 alojamientos disponibles</p>
+        </div>
+        <div id="availability-message" class="notice notice-warning" hidden></div>
+        <div id="apartments-grid" class="apartments-grid"></div>
+      </section>
+
+      <section id="apartment-detail" class="detail-section" hidden aria-live="polite"></section>
+      <section id="booking-section" class="booking-section" hidden aria-labelledby="booking-title"></section>
+      <section id="confirmation-section" class="confirmation-section" hidden aria-live="polite"></section>
+    </section>
+
+    <section id="admin-view" class="view admin-shell" aria-labelledby="admin-title">
+      <aside class="admin-sidebar">
+        <p class="eyebrow">Gestión diaria</p>
+        <h1 id="admin-title">Hoy en StayPilot</h1>
+        <p id="admin-date" class="admin-date"></p>
+        <nav aria-label="Secciones de administración">
+          <button class="side-link is-active" data-admin-tab="agenda">Agenda</button>
+          <button class="side-link" data-admin-tab="calendar">Calendario</button>
+          <button class="side-link" data-admin-tab="reservations">Reservas</button>
+          <button class="side-link" data-admin-tab="properties">Alojamientos</button>
+        </nav>
+        <button id="simulate-expiry" class="text-button">Simular sesión caducada</button>
+      </aside>
+      <div class="admin-content">
+        <div id="session-notice" class="notice notice-error" hidden>
+          <strong>La sesión ha caducado.</strong> Vuelve a entrar para consultar o modificar reservas.
+          <button id="restore-session" class="button button-secondary">Volver a entrar</button>
+        </div>
+        <section id="admin-agenda" class="admin-panel is-active"></section>
+        <section id="admin-calendar" class="admin-panel"></section>
+        <section id="admin-reservations" class="admin-panel"></section>
+        <section id="admin-properties" class="admin-panel"></section>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>StayPilot</strong> · Proyecto de demostración. Alojamientos, reservas y ubicaciones son ficticios.</p>
+    <button class="text-button" data-view="admin">Abrir administración</button>
+  </footer>
+
+  <dialog id="cancel-dialog">
+    <form method="dialog">
+      <p class="eyebrow">Confirmar acción</p>
+      <h2>¿Cancelar esta reserva?</h2>
+      <p>La estancia quedará marcada como cancelada y las fechas volverán a estar disponibles.</p>
+      <div class="dialog-actions"><button value="close" class="button button-secondary">Volver</button><button id="confirm-cancel" value="confirm" class="button button-danger">Cancelar reserva</button></div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
